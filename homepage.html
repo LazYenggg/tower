@@ -25,6 +25,7 @@
         flex-wrap: wrap;
         padding: 3rem 0;
         gap: 4.2rem;
+        margin: 0 auto 0rem;
       }
       .logo {
         font-family: "Raleway", sans-serif;
@@ -87,7 +88,40 @@
         width: 1rem;
         height: 1rem;
       }
-
+      .centerlogo {
+        padding: 100px;
+        margin: 0 auto 0rem;
+      }
+      .centerlogo-img {
+        width: 45rem;
+        height: 45rem;
+      }
+      .navigation-container {
+            display: flex;
+            gap: 20px;
+            padding: 200px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 0rem;
+        }
+        .nav-button {
+            background-color: #f5e6d3;
+            color: #5a6b5d;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
       /* Header */
       .header-section {
         text-align: center;
@@ -196,6 +230,14 @@
       <div class="home-icon" id="homeIcon">
         <img src="icon/Icon.svg" alt="Home" />
       </div>
+      <div class="centerlogo">
+        <img src="Foto/Logo.png" class="centerlogo-img"/>
+      </div>
+      <div class="navigation-container">
+        <button class="nav-button" onclick="handleNavigation('booking')">Booking</button>
+        <button class="nav-button" onclick="handleNavigation('location')">Location</button>
+        <button class="nav-button" onclick="handleNavigation('facility')">Facility</button>
+        <button class="nav-button" onclick="handleNavigation('about')">About Us</button>
     </header>
 
     <section class="recommendation">
@@ -281,6 +323,32 @@
           window.location.href = "homepage.html";
         });
       }
+
+        function handleNavigation(section) {
+            const buttons = document.querySelectorAll('.nav-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            switch(section) {
+                case 'booking':
+                    console.log('Navigating to Booking section');
+                    window.location.href = "bookingpage.html";
+                    break;
+                case 'location':
+                    console.log('Navigating to Location section');
+                    window.location.href = "searchpage.html";
+                    break;
+                case 'facility':
+                    console.log('Navigating to Facility section');
+                    window.location.href = "Fasilitas.html";
+                    break;
+                case 'about':
+                    console.log('Navigating to About Us section');
+                    window.location.href = "About Us.html";
+                    break;
+                default:
+                    console.log('Unknown section');
+            }}
     </script>
   </body>
 </html>
