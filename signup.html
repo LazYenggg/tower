@@ -134,28 +134,21 @@
       <div class="right">
         <div class="Sign_Up-box">
           <h2>Sign Up</h2>
+
           <input type="email" placeholder="Email" id="email" />
+          <input type="text" placeholder="Phone Number" id="phone" maxlength="12" />
+          <input type="password" placeholder="Password" id="password" />
+          <input type="password" placeholder="Confirm Password" id="confirmPassword" />
+
           <button onclick="Sign_Up()">Sign Up</button>
 
           <div class="divider">OR</div>
 
           <div class="social-icons">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
-              alt="Instagram"
-            />
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/281/281764.png"
-              alt="Google"
-            />
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/12107/12107562.png"
-              alt="X"
-            />
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/124/124010.png"
-              alt="Facebook"
-            />
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+            <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png" alt="Google" />
+            <img src="https://cdn-icons-png.flaticon.com/512/12107/12107562.png" alt="X" />
+            <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" />
           </div>
 
           <p class="small-text">
@@ -171,12 +164,36 @@
 
     <script>
       function Sign_Up() {
-        const email = document.getElementById("email").value;
-        if (!email) {
-          alert("Email tidak boleh kosong!");
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        const emailRegex = /^[\w.+-]+@(gmail\.com|yahoo\.com)$/;
+        const phoneRegex = /^\d{1,12}$/;
+        const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/;
+
+        if (!emailRegex.test(email)) {
+          alert("Email harus menggunakan domain gmail.com atau yahoo.com!");
           return;
         }
-        alert(`Sign Up in with email: ${email}`);
+
+        if (!phoneRegex.test(phone)) {
+          alert("Nomor telepon harus berupa angka dan maksimal 12 digit!");
+          return;
+        }
+
+        if (password.length < 8 || !symbolRegex.test(password)) {
+          alert("Password minimal 8 karakter dan harus mengandung simbol!");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          alert("Konfirmasi password tidak cocok!");
+          return;
+        }
+
+        alert(`Pendaftaran berhasil dengan email: ${email}`);
       }
     </script>
   </body>
